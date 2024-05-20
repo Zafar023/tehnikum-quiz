@@ -1,9 +1,11 @@
 import React from "react";
+import { Wraper } from "../components/Wraper";
 
 const Thanks = () => {
   return (
     <div className="container">
-      <div className="wrapper">
+      <Wraper>
+
         <div className="thanks">
           <img src="./img/bell.png" alt="bell" />
           <h1>Спасибо за прохождение опроса!</h1>
@@ -12,8 +14,8 @@ const Thanks = () => {
             Получить ссылку
           </button>
         </div>
+      </Wraper>
       </div>
-    </div>
   );
 };
 

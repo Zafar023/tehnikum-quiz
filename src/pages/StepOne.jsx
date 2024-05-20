@@ -1,11 +1,17 @@
 import React from "react";
 
+import { LinkButton } from "../components/LinkButton";
+import { PrograsBar } from "../components/PrograsBar";
+import { AppHeader } from "../components/AppHeader";
+
 const StepOne = () => {
   return (
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
-          <div className="indicator">
+          <PrograsBar currentStep="1"/>
+
+          {/* <div className="indicator">
             <div className="indicator__text">
               <span className="indicator__description">
                 Скидка за прохождение опроса:
@@ -18,9 +24,9 @@ const StepOne = () => {
               <div className="indicator__unit indicator__unit-3"></div>
               <div className="indicator__unit indicator__unit-4"></div>
             </div>
-          </div>
+          </div> */}
           <div className="question">
-            <h2>1. Занимательный вопрос</h2>
+            <AppHeader headerText="1. Занимательный вопрос" headerType="h2"/>
             <label className="input-wrapper">
               <input
                 required
@@ -28,13 +34,12 @@ const StepOne = () => {
                 name="answer"
                 placeholder="Ваш ответ"
               />
-              <span id="error-message">
-                Введите номер в правильном формате например
+              <span
+               id="error-message"
+                errorText="Введите номер в правильном формате например">
               </span>
             </label>
-            <button type="button" disabled id="next-btn">
-              Далее
-            </button>
+            <LinkButton isDisabled={false} linkType="Button" linkText="Далее" linkBtn="/step-two"/>
           </div>
         </div>
       </div>
