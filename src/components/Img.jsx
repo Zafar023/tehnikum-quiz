@@ -1,5 +1,5 @@
-import React from "react";
+// import React from "react";
 
-export const Img = ({ src, alt }) => {
-  return <img src={src} alt={alt} />;
-};
+// export const Img = ({ src, alt }) => {
+//   return <img src={src} alt={alt} />;
+// };

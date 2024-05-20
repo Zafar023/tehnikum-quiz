@@ -31,7 +31,14 @@ import React from "react";
 //   );
 // };
 // AnswerItem component
-export const AnswerItem = ({ id, AnswerLabel, onChange, checked }) => {
+export const AnswerItem = ({
+  id,
+  AnswerLabel,
+  onChange,
+  checked,
+  src,
+  alt,
+}) => {
   return (
     <li className="variant-wrapper">
       <input
@@ -42,7 +49,11 @@ export const AnswerItem = ({ id, AnswerLabel, onChange, checked }) => {
         onChange={onChange}
         checked={checked}
       />
-      <label htmlFor={id}>{AnswerLabel}</label> {/* Use AnswerLabel here */}
+      <label htmlFor={id}>
+        {AnswerLabel}
+        {src && <img src={src} alt={alt} />}
+      </label>{" "}
+      {/* Use AnswerLabel here */}
     </li>
   );
 };
