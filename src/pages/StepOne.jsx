@@ -1,45 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { LinkButton } from "../components/LinkButton";
 import { PrograsBar } from "../components/PrograsBar";
 import { AppHeader } from "../components/AppHeader";
+import { AppInput } from "../components/AppInput";
+import { useNavigate } from "react-router-dom";
+import { AppButton } from "../components/AppButton";
 
 const StepOne = () => {
+  let [userAnswer, setUserAnswer]= useState("")
+  let [userError,setUserError]= useState(false)
+  let [buttonError,setButtonError] = useState(true)
+  let navigate = useNavigate()
+  const handleClick = () => {
+    if (!userAnswer) {
+      setUserError(true);
+    } else {
+      setUserError(false)
+      navigate("/step-two")
+      localStorage.setItem  ('userOrigin', JSON.stringify( userAnswer ));
+    }
+  };
+
+  useEffect(()=> {
+    if (!userAnswer) {
+      setButtonError(true)
+    } else {
+      setButtonError(false)
+    }
+  },[userAnswer])
+
   return (
     <div className="container">
       <div className="wrapper">
         <div className="single-input-quiz">
           <PrograsBar currentStep="1"/>
 
-          {/* <div className="indicator">
-            <div className="indicator__text">
-              <span className="indicator__description">
-                Скидка за прохождение опроса:
-              </span>
-              <span className="indicator__value">15%</span>
-            </div>
-            <div className="indicator__progressbar">
-              <div className="indicator__unit indicator__unit-1"></div>
-              <div className="indicator__unit indicator__unit-2"></div>
-              <div className="indicator__unit indicator__unit-3"></div>
-              <div className="indicator__unit indicator__unit-4"></div>
-            </div>
-          </div> */}
           <div className="question">
-            <AppHeader headerText="1. Занимательный вопрос" headerType="h2"/>
+            <AppHeader headerText="Откуда вы про нас узнали" headerType="h2"/>
             <label className="input-wrapper">
-              <input
-                required
-                type="text"
-                name="answer"
-                placeholder="Ваш ответ"
+              <AppInput errorText="Введите текст"
+              inputValue={userAnswer}
+              hasError={userError}
+              inputChange={setUserAnswer}
               />
-              <span
-               id="error-message"
-                errorText="Введите номер в правильном формате например">
-              </span>
             </label>
-            <LinkButton isDisabled={false} linkType="Button" linkText="Далее" linkBtn="/step-two"/>
+            <AppButton buttonClick={handleClick} isDisabled={buttonError}/>  
           </div>
         </div>
       </div>

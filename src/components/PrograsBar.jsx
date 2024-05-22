@@ -25,6 +25,7 @@ import React from "react";
 // }
 export const PrograsBar = ({ currentStep }) => {
   const indicatorStep = [1, 2, 3, 4];
+  
   return (
     <div className="indicator">
       <div className="indicator__text">
@@ -37,10 +38,8 @@ export const PrograsBar = ({ currentStep }) => {
         {indicatorStep.map((e, i) => (
           <div
             key={e}
-            className={`indicator__unit indicator__unit-${e} ${
-              currentStep > i && "_active"
-            }`}
-          ></div>
+            className={`indicator__unit indicator__unit-${e} 
+            ${currentStep > i && "_active"}`}></div>
         ))}
       </div>
     </div>

@@ -64,7 +64,7 @@ import { Wraper } from "../components/Wraper";
 //         </div>
 //       </Wraper>
 //       </div>
-    
+
 //   );
 // };
 
@@ -121,42 +121,54 @@ const StepTwo = () => {
   const variants = [
     {
       id: "variant-1",
-      labelText: "Frontend"
+      labelText: "Frontend",
     },
     {
       id: "variant-2",
-      labelText: "Backend"
+      labelText: "Backend",
     },
     {
       id: "variant-3",
-      labelText: "UX/UI"
+      labelText: "UX/UI",
     },
     {
       id: "variant-4",
-      labelText: "Unknown"
+      labelText: "Uzum",
     },
   ];
   const [checkedAnswer, setCheckedAnswer] = useState(null);
-
+if (checkedAnswer==null) {
+  localStorage.setItem("checkedCourse","")
+} else {
+  localStorage.setItem("checkedCourse", JSON.stringify(checkedAnswer))
+}
   return (
     <div className="container">
       <Wraper>
         <div className="variants-quiz">
-        <PrograsBar currentStep="2"/>
+          <PrograsBar currentStep="2" />
           <div className="question">
-            <AppHeader headerText="На каком курсу вы обучаетесь?" headerType="h2" />
+            <AppHeader
+              headerText="На каком курсу вы обучаетесь?"
+              headerType="h2"
+            />
             <ul className="variants">
               {variants.map((elem) => (
                 <AnswerItem
                   key={elem.id}
-                  id={elem.id} 
-                  AnswerLabel={elem.labelText} 
-                  onChange={() => setCheckedAnswer(elem.id)}
-                  checked={checkedAnswer === elem.id}
+                  id={elem.id}
+                  AnswerLabel={elem.labelText}
+                  onChange={() => setCheckedAnswer(elem.labelText)}
+                  checked={checkedAnswer === elem.labelText}
                 />
               ))}
             </ul>
-            <LinkButton isDisabled={false} buttonType="button" linkText="Далее" linkBtn="/step-three" />
+            <LinkButton
+              isDisabled={checkedAnswer === null}
+              buttonType="button"
+              linkText="Далее"
+              linkBtn="/step-three"
+            />
           </div>
         </div>
       </Wraper>
@@ -165,4 +177,3 @@ const StepTwo = () => {
 };
 
 export default StepTwo;
-

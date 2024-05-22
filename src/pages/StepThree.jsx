@@ -53,7 +53,7 @@
 // export default StepThree;
 
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LinkButton } from "../components/LinkButton";
 import { PrograsBar } from "../components/PrograsBar";
 import { AppHeader } from "../components/AppHeader";
@@ -89,6 +89,13 @@ const StepThree = () => {
     },
   ]
   const [checkedAnswer, setcheckedAnswer] = useState(null)
+  useEffect (() => {
+    if (checkedAnswer === null) {
+      localStorage.setItem('checkedEmojiAnswer', '')
+    } else {
+      localStorage.setItem('checkedEmojiAnswer', JSON.stringify(checkedAnswer))
+    }
+  },[checkedAnswer])
   return (
     <div className="container">
       <Wraper>
@@ -105,8 +112,8 @@ const StepThree = () => {
                   src={elem.src} 
                   alt={elem.alt}
                   AnswerLabel={elem.labelText} 
-                  onChange={() => setcheckedAnswer(elem.id)}
-                  checked={checkedAnswer === elem.id}
+                  onChange={() => setcheckedAnswer(elem.labelText)}
+                  checked={checkedAnswer === elem.labelText}
                 />
               ))}
               
